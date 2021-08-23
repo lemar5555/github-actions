@@ -7,9 +7,9 @@ on:
 
 jobs:
   build:
-    - name: Build
-      runs-on: ubuntu:latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: cclauss/Find-Python-syntax-errors-action@master
-      
+    runs-on: ubuntu:latest
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v2
+    - name: Python Syntax Checker
+      uses: cclauss/Find-Python-syntax-errors-action@v0.2.0
