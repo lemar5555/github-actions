@@ -1,5 +1,8 @@
 name: Third
 
+env:
+  WORKSPACE_ENV_VARIABLE: "Workspace level custom environment variable."
+
 on:
   push:
     branches:
@@ -7,11 +10,24 @@ on:
 
 jobs:
   job1:
+    env:
+      JOB_ENV_VARIABLE: "Job level custom environment variable."
     name: First Job
     runs-on: ubuntu-latest
     steps:
       - name: Step One
-        run: date
+        env:
+          STEP_ENV_VARIABLE: "Step level custom environment variable."
+        run: |
+          echo "Accessing environment variables in run command"
+          echo "$WORKSPACE_ENV_VARIABLE"
+          echo "$JOB_ENV_VARIABLE"
+          echo "$STEP_ENV_VARIABLE"
+          echo "----------------------------------------------"
+          echo "Accessing environment variables using env context"
+          echo "${{ env.WORKSPACE_ENV_VARIABLE }}"
+          echo "${{ env.JOB_ENV_VARIABLE }}"
+          echo "${{ env.STEP_ENV_VARIABLE }} not defined"
   job2:
     name: Second Job
     runs-on: ubuntu-latest
