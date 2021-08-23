@@ -1,0 +1,33 @@
+name: Third
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  job1:
+    name: First Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step One
+        run: date
+  job2:
+    name: Second Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step One
+        run: date
+  job3:
+    name: Third Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step One
+        run: date
+  job4:
+    name: Fourth Job
+    runs-on: ubuntu-latest
+    needs: [job1, job2, job3]
+    steps:
+      - name: Step One
+        run: date
